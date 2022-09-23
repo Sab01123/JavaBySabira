@@ -1,0 +1,63 @@
+Question 1: Explain difference between PriorityQueue() and LinkedList().
+
+Ans)  LinkedList: is  implementation of the List interface, it internally uses the doubly linked list data structure.
+we can add and remove data from both end.
+This class is almost the same as ArrayList class, i.e. it also maintains the insertion order, and allows the duplicate
+element.
+LinkedList class is the best choice if our frequent operation is insertion or deletion of the elements from the middle
+because no shifting is required.
+
+      LinkedList<String> list = new LinkedList<>();
+
+      
+Priority Queue:
+
+Queue<Integer> q = new PriorityQueue<>();
+
+
+In Priority Queue  null insertion is not possible even a single null also.
+Inside the Priority Queue if we want any elements then that element should be Comparable, (or we can use Comparator) otherwise 
+we get ClassCastException.
+Inside the Queue the elements will not be as sorted as inside the TreeSet, but by using its peek() and poll() method, remove()
+method it will work according to the Comparable or Comparator(Sorting order).   
+
+example:
+
+Demo.java:
+--------------
+
+package com.masai;
+
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class Demo {
+
+	public static void main(String[] sabira) {
+		
+		
+		Queue<Integer> q = new PriorityQueue<>();
+		
+		q.add(10);
+		q.add(20);
+		q.add(30);
+		q.add(12);
+		q.add(22);
+		q.add(35);
+		
+		System.out.println(q);
+		
+		Integer i1;
+		
+		while((i1 = q.poll()) != null) {
+			
+			System.out.println(i1);
+		}
+		
+		
+		System.out.println(q);
+		
+		
+	}
+
+}   

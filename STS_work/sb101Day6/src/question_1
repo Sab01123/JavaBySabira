@@ -1,0 +1,35 @@
+Q1/ - Write down some predefined Functional interfaces in the java library at least 4
+interfaces, with their methods.
+
+
+Ans)Some of the new functional interfaces introduced in java 8 to perform functional style of
+programming. these interfaces belongs to java.util.function package.
+
+1. Predicate<T>
+  -------------
+public interface Predicate<T>  {
+
+	public boolean test(T t);
+}
+
+2. Consumer<T>
+   ----------
+   public interface Consumer<T> {
+	
+	public void accept(T t);
+}
+   
+3. Supplier<T>
+   -----------
+   public interface Supplier<T> {
+
+	public T get();
+}
+
+4. Function<T,R>
+   -------------
+   public interface Function<T,R> {
+	
+	public R apply(T t);
+
+}

@@ -1,0 +1,83 @@
+Q5/- What is the Difference between the sleep and join method .
+
+Sleep()
+------
+If a thread doesn’t want to perform any operation for a particular amount of time, 
+then we should go for sleep() method.
+
+Example
+
+public class Time implements Runnable{
+	
+	@Override
+	public void run() {
+
+		for(int i =0; i<5; i++) {
+			System.out.println(i);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+		
+	}
+
+	public static void main(String[] args) {
+
+		Time t = new Time();
+		
+		Thread t1 = new Thread(t);
+		t1.start();
+		
+		System.out.println("end of main");
+		
+	}
+
+	
+
+}
+
+Join()
+------
+If a thread wants to wait until completing thread some other threads, 
+then we should go for join.
+
+Example
+
+public class Join implements Runnable{
+	 int sum;
+	@Override
+	public void run() {
+     
+		for(int i=0; i<5; i++) {
+			System.out.println("inside run");
+			sum = sum+i; 
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Join j1 = new Join();
+		Thread t1 = new Thread(j1);
+		t1.start();
+		try {
+			t1.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int result = j1.sum;
+		for(int i=0; i<5; i++) {
+			System.out.println("inside main");
+		 System.out.println(result);
+		}
+		
+		System.out.println("end of main");
+		
+	}
+
+}

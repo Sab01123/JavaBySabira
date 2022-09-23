@@ -1,0 +1,11 @@
+Q3) Explain the difference between local and instance variables?
+
+ans)Instance variable:A variable that is created inside the class but outside the method
+is known as an instance variable. The instance variable doesn't get memory at compile time. 
+It gets memory at runtime when an object or instance is created. That is why it is known as
+an instance variable.
+
+Local Variable:A local variable in Java is a variable that's declared within the body of a method. 
+Then you can use the variable only within that method. Other methods in the class aren't even aware 
+that the variable exists. If we are declaring a local variable then we should initialize it within 
+the block before using it.

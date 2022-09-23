@@ -1,0 +1,32 @@
+Q2/ What is a ThreadPool, how to create a thread pool of 4 threads, and write down the
+difference between the Callable and Runnable interface
+
+Ans)Thread pool is a pool of already created threads ready to do our tasks.
+Thread pool framework is also known as executor framework. this concept is introduced in java5.
+Thread pool related API comes in the form of java.util.concurrent package.
+Without Thread pool, if we have 10 different independent tasks are there then we need to create 10 separate
+threads.
+But using Thread pool concept ,we create a Thread pool of 5 threads and submit all the 10 tasks to this Thread
+pool.
+Here a single thread can perform multiple independent tasks. so that performance will be improved.
+We can create Thread Pool as follows:
+ExecutorService service=Executors.newFixedThreadPool(3);
+Here we have created the pool of 3 threads.
+After creating the pool we need to submit the tasks to this pool.
+service.submit(task); // here task is the object of Runnable.
+
+Difference Between Runnable and Callable:
+
+Runnable                                        Callable
+If a thread won't returns anything.     If a Thread returns anything.
+
+only one method public void run().      Only one method public Object call() throws Exception
+
+return type void                        return type is Object
+
+if any exception raise compulsory we    not required to use try-catch
+need to handle within try catch.
+
+Belongs to java.lang package            Belongs to java.util.concurrent package
+from java 1.0 version                   from java 1.5 version
+

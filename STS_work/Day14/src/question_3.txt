@@ -1,0 +1,18 @@
+Q3) Explain AutoBoxing and Auto UnBoxing with Examples.
+
+Ans)The automatic conversion of primitive data types into its equivalent Wrapper type is known as boxing and opposite
+operation is known as unboxing. This is the new feature of Java5. So java programmer doesn't need to write the
+conversion code.
+The main advantage of Autoboxing and unboxing is, no need of conversion between primitives and Wrappers manually
+so less coding is required.
+
+Example
+int x = 10;
+//lets convert this primitive to the corresponding wrapper object
+Integer i1 = Integer.valueOf(x); // boxing
+Integer i2 = x; //autoboxing
+or
+Integer i3 = 10; //autoboxing
+Unboxing:
+int x = i3.intValue(); //unboxing
+int x = i3; // auto-unboxing

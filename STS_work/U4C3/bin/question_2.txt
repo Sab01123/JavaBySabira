@@ -1,0 +1,12 @@
+Question 2:
+Briefly explain the difference between Early and Late Binding with examples.
+
+Early Binding                                    Late Binding
+
+Early binding happens at compile time            late binding happens at runtime
+Actual object is not used                        Actual object is used
+It is alse known as Static binding               It is also known as dynamic binding
+In early binding speed is high                   In late binding speed is low.
+example of early binding is Method overloading   Exapmle of Late binding is Method Overriding.
+
+

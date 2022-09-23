@@ -1,0 +1,67 @@
+Question 4: Explain Generics in Java and Its Importance with example.
+
+Generics In Java:
+
+The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects.
+It makes the code stable by detecting the bugs at compile time.
+Before generics, we can store any type of objects in the collection, i.e., non-generic.
+Now generics force the java programmer to store a specific type of objects.
+Advantage of Java Generics:
+There are mainly 3 advantages of generics.
+1. Type-safety:  We can hold only a single type of objects in generics. It doesn’t allow
+to store other objects.
+2. Type casting is not required: There is no need to downcast the object.
+List list = new ArrayList();
+list.add("hello");
+String s = (String) list.get(0);
+List<String> list = new ArrayList<String>();
+list.add("hello");
+String s = list.get(0); // no cast
+3. Compile-Time Checking: It is checked at compile time so problem will not occur at
+runtime. The good programming strategy says it is far better to handle the problem
+at compile time than runtime.
+
+example :
+
+MyGen.java:
+-----------------
+
+package com.masai;
+
+public class MyGen<T> {
+	
+	T data;
+	
+	public MyGen(T data) {
+		this.data=data;
+	}
+	
+	public T getData() {
+		return data;
+	}
+
+}
+
+
+Demo.java:
+--------------
+
+package com.masai;
+
+public class Demo {
+
+	public static void main(String[] sabira) {
+		
+		MyGen<Integer> m1= new MyGen<>(10);
+		System.out.println(m1.getData());
+		
+		MyGen<String> m2=new MyGen<>("Hello");
+		System.out.println(m2.getData());
+		
+		
+		MyGen<Student> m3= new MyGen<>(new Student(10, "Ram", 500));
+		System.out.println(m3.getData());
+				
+	}
+
+}

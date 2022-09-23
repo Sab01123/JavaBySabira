@@ -1,0 +1,39 @@
+Q4/ Explain about thread synchronization(inter-thread communication).
+
+Ans)It means two synchronized threads communicate each other.
+Whenever we need to suspend a synchronized thread unconditionally then we use wait() method.
+Whenever we need to resume a suspended(waiting) thread then we use notify() method.
+this is known as thread-synchronization or inter-thread communication.
+In the inter-thread communication the thread which require updation it has to call wait() method.
+The thread which performing updation it will call notify() method, so that waiting thread will gets the notification
+and it continues its execution with those updation.
+
+Example
+-------
+class MyThread extends Thread{
+int num=0;
+@Override
+public void run() {
+synchronized (this) {
+System.out.println("child thread performing calculation");
+for(int i=0;i<=100;i++){
+num=num+i;
+}
+System.out.println("child thread giving the notification");
+this.notify();
+}
+}
+}
+class Test{
+public static void main(String[] args)throws Exception {
+MyThread mt=new MyThread();
+mt.start();
+//Thread.sleep(5000);
+synchronized (mt) { //getting the lock of mt object
+System.out.println("main thread calls the wait method");
+mt.wait();
+System.out.println("main thread got the notification");
+System.out.println(mt.num);
+}
+}
+}

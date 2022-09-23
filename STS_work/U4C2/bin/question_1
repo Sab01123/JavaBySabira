@@ -1,0 +1,39 @@
+Question no 1
+a) Why String is immutable in java and what is the difference between String and String Builder? And Write
+some of the methods of String class at least 5 with example.
+ans)The String is immutable in Java because of the security, synchronization and concurrency, caching, and class loading
+The main difference between string and stringBuilder is that, A String is immutable, while as StringBuilder is mutable.
+The string is immutable means that we cannot change the object itself, but we can change the reference to the object.
+Some of the methods of String class are:
+charAt()	
+codePointAt()
+substring()	
+toCharArray()	
+toLowerCase()	
+toString()	
+toUpperCase()
+trim()
+compareTo()	
+concat()	
+equalsIgnoreCase()	
+
+b) What is the difference between equals method and == operator in java? And what will be the output of the
+following code snippets and giving proper explanation.
+ans) == is a reference comparison, i.e. both objects point to the same memory location. . equals() evaluates to the comparison of values in the objects.
+
+	    String s1 = new String("abc");
+		String s2 = new String("abc");
+		System.out.println(s1.equals(s2));
+		output will be true.
+		
+     	StringBuilder sb1 = new StringBuilder("abc");
+		StringBuilder sb2 = new StringBuilder("abc");
+		System.out.println(sb1.equals(sb2));
+		output will be false.
+
+		
+		String s1 = new String("abc");
+		String s2 = new String("abc");
+		System.out.println(s1==s2);
+		output will be false.
+		

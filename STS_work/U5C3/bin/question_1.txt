@@ -1,0 +1,95 @@
+Q1/- Explain the meaning of the deadlock in multithreaded application, when 
+it can occur in multithreading applications.Write one example of deadlock.
+
+Ans)Dead lock concept comes under multiThreading. Multithreading is the process 
+of executing multiple  threads simultaneously.
+
+Deadlock is a lock without Key i.e; a lock without key is called deadlock.
+The synchronized keyword is the only reason for deadlock.
+
+When two threads are waiting for each other forever i.e; for infinite time, then in multithreading deadlock occurs.
+
+Example of deadlock.
+----------------------------
+
+		Class x{
+		
+		public synchronized void funx(Y y1){
+		
+		System.out.println("inside funx")
+		y1.fun2();
+		system.out.println("funx ends");
+		
+		
+		}
+		
+		public synchronized void fun1(){
+		system.out.println("inside fun1");
+		}
+	   }
+	   
+	   
+	   class Y{
+	   
+	   public synchronized void funfuny(x x1 ){
+	   
+	   system.out.println("funy of y starts");
+	   
+	   x1.fun1();
+	   
+	   system.out.println("funy of y ends");
+	   }
+	public synchronized void fun2(){
+	
+	system.out.println("inside fun2 of y")
+	}	
+  }	
+		class ThreadX extends Thread{
+		
+		X x1;
+		Y y1;
+		
+		public Threadx(x x1, y y1){
+		
+		this.y1= y1;
+		this.x1= x1;
+		}
+		@override
+		public void run(){
+		
+		x1.funA(y1);
+		
+		}
+     }
+     
+     class ThreadB extends Thread{
+     
+     x x1;
+     y y1;
+     
+     public Threadb(x x1, y y1){
+     this.x1= x1;
+     this.y1= y1
+     }
+     @override
+     public void fun(){
+     
+     y1.funy(x1);
+     }
+    }
+    
+    class Main{
+    public static void main(String[] args){
+    x x1 = new x();
+    y y1 = new y():
+    
+    Thread t1 = new Thread(x1, y1);
+    Thread t2 = new Thread(x1, y1);
+    
+    t1.start();
+    t2.start();
+     }
+    } 
+    
+    In the above example if any method of class x or class y we remove
+    the "synchronized" keyword then it will not become a Deadlock. 

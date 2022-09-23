@@ -1,0 +1,22 @@
+Q4) Explain why the following block of code will give a compile time error?
+public class Main {
+public static void main(String[] args) {
+float f=3.3;
+System.out.println(f);
+}
+}
+Also rectify this code.
+
+Ans) The  block of code will give a compile time error 
+because in java any decimal point number will be by default 
+treated as double.In order to downcast this double value to the float we can use either
+float f = (float)3.3;
+or
+float f = 3.3f;
+
+public class Main {
+public static void main(String[] args) {
+float f=3.3f;
+System.out.println(f);
+}
+}

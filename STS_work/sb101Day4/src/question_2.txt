@@ -1,0 +1,126 @@
+Q2) Explain the difference between Checked and Unchecked exceptions. write some
+examples of checked and unchecked exception classes.
+
+Ans       Difference between Checked and Unchecked Exceptions:
+1. Checked Exception: The classes that directly inherit the Throwable class except
+RuntimeException and Error are known as checked exceptions. For example, IOException,
+SQLException, etc. Checked exceptions are called compile-time exceptions because these
+exceptions are checked at compile-time by the compiler.
+
+2. Unchecked Exception: The classes that inherit the RuntimeException are known as
+unchecked exceptions. For example, ArithmeticException, NullPointerException,
+ArrayIndexOutOfBoundsException, etc. Unchecked exceptions are not checked at
+compile-time, but they are checked at runtime. In simple words, if a program throws an
+unchecked exception, and even if we didn’t handle or declare it, the program would not
+give a compilation error.
+The RuntimeException class is the superclass of all unchecked exceptions, so we
+can create a custom unchecked exception by extending RuntimeException:
+
+Example of UnChecked Exception
+------------------------------
+
+UserRegistration class
+----------------------
+public class UserRegistration {
+	
+	String username;
+	String userCountry;
+
+	public static void registerUser(String username, String userCountry) throws InvalidCountryException{
+		
+		if(userCountry.equalsIgnoreCase("india")) {
+			System.out.println("User registration done successfully");
+		}
+		else {
+			InvalidCountryException ie = new InvalidCountryException("User Outside India cannot be registered");
+			throw ie;
+		}
+	
+		
+	}
+	
+}
+
+Main class
+-----------
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws InvalidCountryException {
+
+		UserRegistration d1 = new UserRegistration();
+		
+		
+		Scanner sc = new Scanner(System.in);
+		
+		
+while(true) {
+	try {
+		System.out.println("Enter Your Name:");
+		String name = sc.next();
+		System.out.println("Enter Your Country");
+		String country = sc.next();
+		d1.registerUser(name, country);
+		
+	} catch (Exception e) {
+System.out.println(e.getMessage());
+}
+	System.out.println("Do you want to add more Y or N");
+	String noString = sc.next();
+	if(noString.equalsIgnoreCase("n")) {
+		break;
+	}
+	
+}
+		System.out.println("Thank you!");
+	}
+
+}
+
+
+Example of Checked Exception
+-----------------------------
+
+Child class
+-----------
+
+public class Child extends Parent{
+
+	public Child() throws Exception {
+		super();
+System.out.println("Inside child constructor");	}
+
+	public static void main(String[] args) {
+
+		try {
+			Parent d1 = new Child();
+			d1.fun1();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+
+}
+
+Parent class
+------------
+
+public class Parent {
+
+	
+public Parent() throws Exception{
+	System.out.println("Inside parent constructor");
+
+}
+
+public void fun1() {
+	System.out.println("inside fun1 of Parent class");
+}
+
+}

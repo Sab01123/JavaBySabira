@@ -1,0 +1,74 @@
+
+Question: Explain the difference between overloading and overriding methods with an example?
+
+            Overloading Method                                      Overriding Method
+Method overloading is a compile-time polymorphism.	    Method overriding is a run-time polymorphism.
+It helps to increase the readability of the program.	It is used to grant the specific implementation of the method which is
+                                                        already provided by its parent class or superclass.
+It occurs within the class.              	            It is performed in two classes with inheritance relationships.
+Method overloading may or may not require inheritance.	Method overriding always needs inheritance.
+In method overloading, methods must have the same name  In method overriding, methods must have the same name and same signature.
+and different signatures.	                             
+In method overloading, the return type can or can not   In method overriding, the return type must be the same or co-variant.
+be the same, but we just have to change the parameter.	
+Static binding is being used for overloaded methods.	Dynamic binding is being used for overriding methods.
+Private and final methods can be overloaded.	        Private and final methods can’t be overridden.
+Argument list should be different while doing method    Argument list should be same in method overriding.
+ overloading.	  
+ 
+				 Example of Overloading Method 
+				                        
+				 public class Overloading {                               
+				    
+					static int  overloadMethod(int x, int y){
+				        return x+y;
+				         
+					}
+					public static void main(String[] args) {
+						
+				    System.out.println(overloadMethod(2, 5));
+				    System.out.println(overloadMethod(10, 20));
+				    
+					}
+				
+				}    
+				
+				**********************************************
+				
+				Example of Overriding Method
+				package com.question_1;
+
+					public class Bird {
+					
+						public void fly() {
+							System.out.println("Bird is flying");
+						}
+					}    
+					
+					
+					package com.question_1;
+
+				public class Parrot extends Bird {
+				
+					@Override
+					public void fly() {
+						System.out.println("I am Flying");
+					}
+					public void sing(){
+						System.out.println("I am Singing");
+						}
+				}    
+				
+				package com.question_1;
+
+					public class Main {
+					
+						public static void main(String[] args) {
+					
+							Bird b1 = new Parrot();
+							b1.fly();
+							((Parrot) b1).sing();
+						}
+					
+					}
+				                          

@@ -1,0 +1,79 @@
+Q3) What is the use of ‘this’ and ‘super’ keywords in java ? Explain with an example.
+
+Ans) The super keyword in Java is a reference variable that is used to refer to immediate
+parent class object.
+Whenever you create the instance of a subclass, an instance of parent class is created
+implicitly which is referred by the super reference variable.
+
+Usage of Java super Keyword
+
+1. super can be used to refer to the immediate parent class instance variable.
+2. super can be used to invoke the immediate parent class method.
+3. super() can be used to invoke immediate parent class constructor.
+
+Example
+
+class Animal{
+Animal(){
+System.out.println("animal is created");
+}
+}
+class Dog extends Animal{
+Dog(){
+super();
+Day7 and 8: Inheritance, method Overriding, Object class, super keyword, Object downcasting, toString method. 14
+System.out.println("dog is created");
+}
+}
+class Main{
+public static void main(String args[]){
+Dog d=new Dog();
+}
+}
+"this" keyword:
+The "this" keyword will represent the current class object.
+
+There are 3 uses of 'this' keyword:
+
+1. To represent the current class object.
+
+2. To differentiate the instance variable and the local variable
+
+3. To call a constructor of a class from the another constructor of the same class.
+
+
+
+Example:
+
+Demo.java:
+--------------
+
+package com.masai;
+
+public class Demo {
+
+	int x = 10;
+
+	
+	void fun1() {
+		int x=400;
+		System.out.println("inside fun1 of Demo");
+		System.out.println(x);//local variable
+		System.out.println(this.x); // instance variable
+		
+		System.out.println(this);//current object on which fun1 is called
+		
+		
+	}
+	
+	
+	public static void main(String[] args) {
+
+		Demo d1= new Demo();
+		System.out.println(d1);
+		d1.fun1();
+
+	}
+
+}
+

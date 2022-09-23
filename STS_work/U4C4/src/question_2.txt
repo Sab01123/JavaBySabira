@@ -1,0 +1,77 @@
+Q2) Explain about Hashcode and Equals Method.
+
+Ans)When we have to return "true" for two objects which are logically equal then for those two objects
+their hasCode should also be same, and this can be checked through overriding.
+There are three cases in which we need to override hashcode and equals method:
+1. Whenever we should to make our objects logically equal to each other.
+2. Whenever we try to add our objects inside the HashSet or LinkedSet class.
+3.Whenever we try to add our object as a key inside the HashMap class also.
+
+Example
+
+
+public class Book {
+	
+    int	bookId;
+	String bookName;
+	String author;
+
+	public Book() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Book(int bookId, String bookName, String author) {
+		super();
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.author = author;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", author=" + author + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(author, bookId, bookName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(author, other.author) && bookId == other.bookId
+				&& Objects.equals(bookName, other.bookName);
+	}
+	
+}

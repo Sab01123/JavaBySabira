@@ -1,0 +1,22 @@
+Q6) What if we call Java run() method directly instead start() method?
+
+if we call java run() directly instead of start() method then java run() 
+will be called as a normal method.
+
+example
+-------
+
+public class B extends Thread{
+
+	@Override
+	public void run() {
+		System.out.println("inside run");
+	}
+	public static void main(String[] args) {
+
+		B b1 = new B();
+		b1.run();//it will be called as a normal method.
+		b1.start();//here second thread will start
+	}
+
+}

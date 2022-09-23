@@ -1,0 +1,48 @@
+
+Q2) What is the difference between ArrayList and Array?
+
+Ans)
+
+              Array:
+              
+1.Size is fixed, we can not increase or decrease it dynamically.
+
+2.It supports homogenious type of Data/element.
+
+This limitation we can overcome by taking Object class array.
+
+
+Object[] objs= new Object[3];
+
+objs[0]=new Student();
+objs[1]=new Employee();
+objs[2]=new Product();
+
+
+3. array concept is not implemented based on readymade method support.
+for each and every requirement we need to write our own logic,.
+even for printing the elements from an array we need to write for loop.
+In each array object we have only one non-static variable i.e 'length'.
+
+To overcome the above limitation we need to use collection framework.
+
+             ArrayList:
+
+It is the implementation of the List interface.
+It is basically a dynamic array (it dynamically increase and decrease in size).
+ArrayList class is the best choice if our frequent operation is retrieval based on index.
+Duplicate are allowed.
+Null insertion is possible (multiple time also)
+
+example:
+
+ArrayList al=new ArrayList();
+
+System.out.println(al);//[]
+		
+
+Note: all the collection classes has overriden the toString() method internally. so they will print the elements inside that collection in [] square bracket.
+All the collection classes are like a container or bag which holds multiple objects.
+
+             
+             

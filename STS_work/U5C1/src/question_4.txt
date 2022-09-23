@@ -1,0 +1,37 @@
+
+Question 4: What will be the output of below code and why?
+
+
+ans)
+public class CheckOutput {
+
+	public static void main(String[] args) {
+		try
+		{
+		System.out.print("A");
+		int num = 99/0;
+		System.out.print("B");
+		}
+		catch(ArithmeticException ex)
+		{
+		System.out.print("C");
+		}
+		catch(Exception ex)
+		{
+		System.out.print("D");
+		}
+		System.out.print("E");
+		
+  The output will be ACE
+  A will be because in try we are printing "A".
+  
+  Then in next line int num = 99/0; there will be Arithmetic error because 99/0 is undefined
+  so it will be handled by catch(ArithmeticException ex) and it will print "C".
+  Finally the last statement will print "E".
+  
+  thus the final answer will be ACE.
+  
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+Question 5:
+a) Does the below code compile successfully? If not, why?
+interface A{
+int i = 111;
+}
+class B implements A{
+void methodB(){
+i = 222;
+}
+}
+
+
+
+ans) The above code will not compile succefully.
+It cannot override field,
+and if we want to override we need override annotation.

@@ -1,0 +1,187 @@
+Q3/- What is the Serialization and deseiralization in Java?
+
+Ans)Serialization is the conversion of the state of an object into a byte stream. 
+which we can then save to a database or transfer over a network.
+The reverse operation of serialization is called deserialization where byte-stream 
+is converted into an object. The serialization and deserialization process is 
+platform-independent, it means you can serialize an object on one platform and 
+deserialize it on a different platform.
+
+Example
+-------
+
+Address Class
+--------------
+import java.io.Serializable;
+
+public class Address implements Serializable{
+
+private	String state;
+private String city;
+private int pincode;
+
+public Address() {
+	// TODO Auto-generated constructor stub
+}
+
+public Address(String state, String city, int pincode) {
+	super();
+	this.state = state;
+	this.city = city;
+	this.pincode = pincode;
+}
+
+public String getState() {
+	return state;
+}
+
+public void setState(String state) {
+	this.state = state;
+}
+
+public String getCity() {
+	return city;
+}
+
+public void setCity(String city) {
+	this.city = city;
+}
+
+public int getPincode() {
+	return pincode;
+}
+
+public void setPincode(int pincode) {
+	this.pincode = pincode;
+}
+
+@Override
+public String toString() {
+	return "Address [state=" + state + ", city=" + city + ", pincode=" + pincode + "]";
+}
+
+
+}
+
+Student class
+-------------
+
+import java.io.Serializable;
+
+public class Student implements Serializable{
+
+	private int roll;
+	private String name;
+	private int marks;
+	Address address = new Address();
+	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Student(int roll, String name, int marks, Address address) {
+		super();
+		this.roll = roll;
+		this.name = name;
+		this.marks = marks;
+		this.address = address;
+	}
+
+	public int getRoll() {
+		return roll;
+	}
+
+	public void setRoll(int roll) {
+		this.roll = roll;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getMarks() {
+		return marks;
+	}
+
+	public void setMarks(int marks) {
+		this.marks = marks;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [roll=" + roll + ", name=" + name + ", marks=" + marks + ", address=" + address + "]";
+	}
+
+}
+
+
+Serialization
+-------------
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Demo1 {
+
+	public static void main(String[] args) throws Exception {
+
+		
+		List<Student> list = new ArrayList<>();
+		list.add(new Student(1, "sab", 100, new Address("jk", "srg", 190008)));
+		list.add(new Student(2, "aab", 200, new Address("pk", "pun", 190002)));
+		list.add(new Student(3, "dab", 300, new Address("rk", "del", 190003)));
+		list.add(new Student(4, "zab", 400, new Address("dk", "pune", 190458)));
+		list.add(new Student(5, "rab", 500, new Address("kk", "shimla", 190079)));
+
+		FileOutputStream fos = new FileOutputStream("e://myFile.txt");
+		ObjectOutputStream ois = new ObjectOutputStream(new FileOutputStream("e://myFile.txt"));
+		
+		ois.writeObject(list);
+		ois.close();
+		
+		System.out.println("done..");
+	}
+
+}
+
+
+
+DeSerialization
+---------------
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.List;
+
+public class Demo2 {
+
+	public static void main(String[] args) throws Exception {
+
+
+		FileInputStream fis = new FileInputStream("e:myFile.txt");
+		
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		List<Student> list = (List<Student>) ois.readObject();
+		
+		list.forEach(s-> System.out.println(s));
+		
+		System.out.println("done");
+		
+	}
+
+}

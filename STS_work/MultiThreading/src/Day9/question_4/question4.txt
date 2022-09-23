@@ -1,0 +1,65 @@
+Q4/- What is a Race condition, How will you solve the Race condition,explain with an
+Example
+
+Ans)A race-condition is a condition in which the critical section (a part of the program 
+where shared memory is accessed) is concurrently executed by two or more threads. 
+It leads to incorrect behavior of a program.
+
+In layman terms, a race condition can be defined as, a condition in which two or more 
+threads compete together to get certain shared resources.
+
+Example:
+class Common{
+public void fun1(String name){
+System.out.print("Welcome");
+try{
+Thread.sleep(1000);
+}
+catch(Exception ee){
+}
+System.out.println(name);
+}
+
+class ThreadA extends Thread{
+Common c;
+String name;
+public ThreadA(Common c,String name) {
+this.c=c;
+this.name=name;
+}
+@Override
+public void run() {
+c.fun1(name);
+}
+}
+
+class ThreadB extends Thread{
+Common c;
+String name;
+public ThreadB(Common c,String name) {
+this.c=c;
+this.name=name;
+}
+@Override
+public void run() {
+c.fun1(name);
+}
+}
+
+class Main{
+public static void main(String[] args){
+Common c=new Common();
+//sharing same Common object to two thread
+ThreadA t1=new ThreadA(c,"Ram");
+ThreadB t2=new ThreadB(c,"Shyam");
+t1.start();
+t2.start();
+}
+}
+
+The output will be Welcome Welcome Ram Shyam which is not expected.
+
+We can get the desired output if we avoid two thread acting on fun1() simultaneously.
+To achieve this requirement we need to make fun1() as synchronized.
+If a method or block is declared as synchronized then at a time only one thread is allowed 
+to execute that method or block on a given object so that data inconsistency problem will be resolved

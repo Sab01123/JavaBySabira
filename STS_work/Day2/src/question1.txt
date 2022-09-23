@@ -1,0 +1,67 @@
+Q1) Explain Type casting and its types with examples?
+
+ans) The process of converting data from one data type to another data type is called as "Type Casting".
+There are two types of primitive data types type castings.
+1. Implicit Type Casting
+2. Explicit Type Casting
+
+1. Implicit Type Casting:
+The process of converting data from lower data type to higher data type is called as
+Implicit Type Casting.
+package com.masai;
+
+		public class Main {
+
+			public static void main(String[] args) {
+//ex1
+				byte b_1 = 10;
+				int i_1 = b;
+				System.out.println(b_1+" "+i_1);
+						
+				/*int m=10;
+				byte n=m;
+				System.out.println(m+" "+n);
+				Status: Compilation Error, Possible loss of precision.*/
+				
+				/*byte b=65;
+				char c=b;
+				System.out.println(b+" "+c);
+			Status: Compilation Error*/
+
+				char o = 'A';
+				int p = o;
+				System.out.println(o+" "+p);
+				
+				//eg
+				 byte b1=60;
+				byte b2=70;
+				byte b=b1+b2;
+				System.out.println(b);
+Status: Compilation Error, Possible loss of precision.
+				 
+				 
+2. Explicit Type Casting:
+The process of converting data from higher data type to lower data type is called as Explicit Type
+Casting.				 
+				
+				//eg1
+			int in1 = 10;
+			byte by1 = (byte)in1;
+			System.out.println(in1+" "+by1);
+			
+			//eg2
+			byte bb1 = 30;
+			byte bb2 = 20;
+			byte ans = (byte)(bb1+bb2);
+			System.out.println(ans);
+//			eg2
+			int no  = 130;
+			byte bb3 = 20;
+			int anss = no+bb3;
+			System.out.println(anss);
+//			eg3
+			int inty = 130;
+			byte byty = (byte)inty;
+			System.out.println(byty);
+			}
+		}	

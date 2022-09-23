@@ -1,0 +1,32 @@
+Q5) Differentiate between the Thread class and Runnable interface for creating a
+Thread?
+
+Ans)We implement threads either of the following two ways:
+1. By implementing Runnable Interface.
+2. By extending Thread class.
+
+Thread class and Runnable interface are the two structures using which we implement Thread based
+multitasking in java.
+The signature of a function using which we implement a thread is defined in an interface by the name Runnable.
+This Runnable interface belongs to java.lang package. it has only one abstract method:
+public void run();
+Inside this run() method we need to define the functionality, that we want to execute as a thread along with the main
+thread. after providing the body we need to execute this functionality as a thread (i.e. simultaneously with the other
+part of the program)
+There is a class by the name Thread present in java.lang package, which has a method called start(), this start()
+method is used to execute a given functionality defined inside the run() method of Runnable interface as a separate
+thread.
+This start() method of the Thread class recognize the run() method of the Runnable interface and then the run()
+method is executed as a separate individual thread
+
+Thread                                                	Runnable
+It is used to create a thread.                     Runnable is a functional interface which 
+                                                   is used to create a thread 
+It has multiple methods including start()          It has only abstract method run().
+and run().         
+Each thread creates a unique object and gets       Multiple threads share the same objects.
+associated with it.
+More memory required.                              Less memory required.
+Multiple Inheritance is not allowed in java        If a class is implementing the runnable
+hence after a class extends Thread class,          interface then your class can extend
+it can not extend any other class                  another class

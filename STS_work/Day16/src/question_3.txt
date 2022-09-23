@@ -1,0 +1,216 @@
+Q3) Explain the difference between comparable and
+comparator.
+
+Ans)        Comparable                                      Comparator
+           -------------                                  --------------
+
+1.Comparable interface belongs to java.lang package.    1.Comparator interface belongs to java.util package.
+
+2.If we want to specify the sorting logic of a class    2.If we want to specify the sorting logic of a class
+  object within the same class , we need to use           object outside that class then we should use
+  Comparable                                              Comparator.
+  
+3.With the help of Comparable we can define only        3.With the help of Comparator we can define
+  one sorting logic within a class.                       multiple sorting logic of a class object inside
+                                                          multiple classes.
+                                                          
+4.Here method name is: public int compareTo             4.Here method name is : public int compare(Object
+  (Object obj).                                           obj1, Object obj2).
+  
+  
+  example of comparable
+  ---------------------
+  
+  Student.java
+  ------------
+  public class Student implements Comparable<Student>{
+
+   private int roll;
+	private String name;
+	private int marks;
+	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Student(int roll, String name, int marks) {
+		super();
+		this.roll = roll;
+		this.name = name;
+		this.marks = marks;
+	}
+
+	public int getRoll() {
+		return roll;
+	}
+
+	public void setRoll(int roll) {
+		this.roll = roll;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getMarks() {
+		return marks;
+	}
+
+	public void setMarks(int marks) {
+		this.marks = marks;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [roll=" + roll + ", name=" + name + ", marks=" + marks + "]";
+	}
+
+	
+	// if Marks are same then sort them according to thier name:
+	
+	@Override
+	public int compareTo(Student o) {
+		if(this.getMarks()>o.getMarks())
+			return +1;
+		else if(this.getMarks()<o.getMarks())
+			return -1;
+		else
+			return this.getName().compareTo(o.getName());
+
+	}
+
+}
+
+    Main.java
+    ---------
+    import java.util.TreeSet;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		TreeSet<Student> ts = new TreeSet<>();
+		
+		ts.add(new Student(1, "sab", 110));
+		ts.add(new Student(2, "aab", 510));
+		ts.add(new Student(3, "zab", 110));
+		ts.add(new Student(4, "pab", 210));
+
+
+		for(Student i:ts) {
+			
+			System.out.println(i);
+		}
+
+}      
+                                                
+                                                          
+example of comparator
+---------------------
+Student.java
+package comparator;
+
+public class Student {
+
+	private int roll;
+	private String name;
+	private int marks;
+	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Student(int roll, String name, int marks) {
+		super();
+		this.roll = roll;
+		this.name = name;
+		this.marks = marks;
+	}
+
+	public int getRoll() {
+		return roll;
+	}
+
+	public void setRoll(int roll) {
+		this.roll = roll;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getMarks() {
+		return marks;
+	}
+
+	public void setMarks(int marks) {
+		this.marks = marks;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [roll=" + roll + ", name=" + name + ", marks=" + marks + "]";
+	}
+}
+StudentComp.java
+----------------
+
+import java.util.Comparator;
+
+public class StudentComp implements Comparator{
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		Student s1 = (Student)o1;
+		Student s2 = (Student)o2;
+		
+		if(s1.getMarks()>s2.getMarks())
+			return +1;
+		else if(s1.getMarks()<s2.getMarks())
+			return -1;
+		else
+			return 0;
+
+		
+	}
+
+}
+Main.java
+---------
+import java.util.TreeSet;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		StudentComp stc = new StudentComp();
+		
+		TreeSet<Student> ts =new TreeSet<>(stc);
+		
+		ts.add(new Student(1, "sab", 550));
+		ts.add(new Student(2, "aab", 450));
+		ts.add(new Student(3, "rab", 150));
+		ts.add(new Student(4, "dab", 650));
+		ts.add(new Student(5, "lab", 950));
+		ts.add(new Student(6, "zab", 250));
+		
+for(Student i:ts) {
+	System.out.println(i);
+}
+		
+		
+	}
+
+}
+
+
+   

@@ -1,0 +1,25 @@
+Q1) Differentiate between static and non-static variables?
+
+Ans) Static Members					       Non-Static Members
+1.Belongs to class 						1.Belong to Object
+2.Can be accessed using        			2.Can be accessed using
+  ClassName.memberName			 		  objectName.memberName
+3.Static variable initializes with 		3.Non-static variable initializes with
+  default values at the time of class	  default values at the time of object
+  loading.								  creation
+4.All objects of a class share a		4.Each object has one local copy of the
+  single copy of static variables		  non-static variables
+
+example
+package com.masai;
+public class Main{
+static int x; (static variable)
+int y; (non- static variable or instance variable)
+
+public static void main(String[] args){
+Main obj1 = new Main();
+System.out.println(x);  (we can directly print x)
+		Main obj = new Main(); (in order to print y we need first to create object)
+		System.out.println(obj.y);
+}
+}

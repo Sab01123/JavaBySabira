@@ -1,0 +1,44 @@
+Q2/- What’s the difference between class lock and object lock?
+
+Ans)There are two types of lock in java:
+1. object level lock(it is unique for each object of a class)
+2. class level lock(it is unique for each class)
+If a thread try to execute a static synchronized method then it required class level lock.
+object lock and class level lock both are independent and there is no link between them.
+While a thread is executing a static synchronized method, the remaining threads are not 
+allowed to execute any other static synchronized method of that class simultaneously 
+(**even on the multiple object of that class also) but remaining threads are allowed 
+to execute normal static and synchronized non-static methods and normal nonstatic methods 
+simultaneously.
+
+1. synchronized block to get a object level lock of the same class:
+Example
+void fun1(){
+System.out.println("do something...");
+//1 thousand lines of codes are there
+synchronized(this){--//here if a thread gets the lock of current obj then it is allowed to execute
+//this block
+System.out.println("do some more thing1");
+}
+//1 thousand lines of codes r there
+}
+
+2. synchronized block to get a object level lock of different object
+Example:
+A a1=new A();
+A a2=new A();
+void fun1(){
+System.out.println("do something...");
+synchronized(a1){//if a thread gets the lock of a1 object of A class
+//(not a2 obj of A class) then only it is allowed
+//to execute the following block of code
+System.out.println("do some more thing1");
+System.out.println("do some more thing2");
+}
+
+3. To get a class level lock:
+Example
+synchronized(A.class){//if a thread gets the class level lock of class A
+//then only it is allowed to execute following block
+System.out.println("do some more thing1");
+}
