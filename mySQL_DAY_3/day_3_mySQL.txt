@@ -1,0 +1,42 @@
+
+mysql> delete from back_employee where sal< 3000;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from back_employee where deptno=10;
++-------+-------+---------+---------+------------+--------+------+------+
+| empno | Ename | job     | sal     | hiredate   | deptno | mgr  | comm |
++-------+-------+---------+---------+------------+--------+------+------+
+|  7004 | john  | manager | 5999900 | 2005-08-06 |     10 | NULL |    0 |
++-------+-------+---------+---------+------------+--------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from back_employee where deptno=10 AND job='manager';
++-------+-------+---------+---------+------------+--------+------+------+
+| empno | Ename | job     | sal     | hiredate   | deptno | mgr  | comm |
++-------+-------+---------+---------+------------+--------+------+------+
+|  7004 | john  | manager | 5999900 | 2005-08-06 |     10 | NULL |    0 |
++-------+-------+---------+---------+------------+--------+------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from back_employee where sal between 3000 AND 5000;
++-------+-------+-------+------+------------+--------+------+------+
+| empno | Ename | job   | sal  | hiredate   | deptno | mgr  | comm |
++-------+-------+-------+------+------------+--------+------+------+
+|  7005 | blake | clerk | 3500 | 2005-09-06 |     30 | NULL |    0 |
++-------+-------+-------+------+------------+--------+------+------+
+1 row in set (0.00 sec)
+
+mysql> delete from back_employee where hiredate> '2005-07-10';
+Query OK, 2 rows affected (0.12 sec)
+
+mysql> restore from back_employee where hiredate>'2005-07-10';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'restore from back_employee where hiredate>'2005-07-10'' at line 1
+mysql> select * from back_employee where job='manager' or job='president';
++-------+-------+-----------+-------+------------+--------+------+------+
+| empno | Ename | job       | sal   | hiredate   | deptno | mgr  | comm |
++-------+-------+-----------+-------+------------+--------+------+------+
+|  7002 | mason | president | 10000 | 2005-06-06 |     20 | NULL |    0 |
++-------+-------+-----------+-------+------------+--------+------+------+
+1 row in set (0.00 sec)
+
+mysql>
