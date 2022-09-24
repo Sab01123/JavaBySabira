@@ -1,0 +1,198 @@
+
+           MySQL Day_2
+          -------------
+
+Q1/-
+Cocoa Confections is a small bakery that sells brownies, cookies, pies, and other
+delicious treats to customers online. It keeps records of all of its online sales in an
+SQL database that is automatically populated as customers places orders on its site.
+In its database, Cocoa Confections has a customers table to keep track of customer
+contact information, and an orders table to keep track of various orders that those
+customers have placed. The schema of these tables is as follows:
+  ------------------------------------------------
+It's the end of 2016, and the owner of Cocoa Confections wants to write an SQL
+query that finds the COUNT of orders placed in 2016 by customer e-mail address.
+She wants to ORDER the results by the COUNT of orders placed in 2016,
+descending, so that she can personally send thank-you e-mails to Cocoa
+Confection's top customers by order volume.
+Can you write a query that will help the owner of Cocoa Confections find the
+COUNT of all orders placed in 2016, by customer e-mail address, sorted
+Descending?
+
+Ans)
+---
+CREATE TABLE customers (
+customer_id INT PRIMARY KEY,
+first_name VARCHAR(255) NOT NULL,
+last_name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+address VARCHAR(255) DEFAULT NULL,
+city VARCHAR(255) DEFAULT NULL,
+state VARCHAR(2) DEFAULT NULL,
+zip_code VARCHAR(5) DEFAULT NULL
+);
+
+CREATE TABLE orders (
+order_id INT PRIMARY KEY,
+customer_id INT NOT NULL,
+order_placed_date DATE NOT NULL,
+FOREIGN KEY (customer_id) REFERENCES customers
+(customer_id)
+);
+
+mysql> select c.email, count(o.order_id) order__count  from customers c  INNER JOIN orders o  on c.customer_id =o.customer_id where YEAR(o.order_placed_date)=2016 group by o.customer_id;
++--------------+--------------+
+| email        | order__count |
++--------------+--------------+
+| abc@mail.com |            2 |
+| efg@mail.com |            1 |
++--------------+--------------+
+2 rows in set (0.04 sec)
+
+
+
+Q2/-Use the below queries to create a database and respective
+table.
+
+CREATE DATABASE ORG;
+SHOW DATABASES;
+USE ORG;
+
+mysql> USE ORG;
+Database changed
+mysql> CREATE TABLE Worker (
+    -> WORKER_ID INT PRIMARY KEY,
+    -> FIRST_NAME VARCHAR(25),
+    -> LAST_NAME VARCHAR(25),
+    -> SALARY INT,
+    -> JOINING_DATE DATETIME,
+    -> DEPARTMENT VARCHAR(25)
+    -> );
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> INSERT INTO Worker VALUES
+    -> (001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+    -> (002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+    -> (003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+    -> (004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+    -> (005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+    -> (006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+    -> (007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+    -> (008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+Query OK, 8 rows affected, 8 warnings (0.11 sec)
+Records: 8  Duplicates: 0  Warnings: 8
+
+mysql> CREATE TABLE Bonus (
+    -> WORKER_REF_ID INT,
+    -> BONUS_AMOUNT INT,
+    -> BONUS_DATE DATETIME,
+    -> FOREIGN KEY (WORKER_REF_ID)
+    -> REFERENCES Worker(WORKER_ID)
+    -> ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> INSERT INTO Bonus VALUES
+    -> (001, 5000, '16-02-20'),
+    -> (002, 3000, '16-06-11'),
+    -> (003, 4000, '16-02-20'),
+    -> (001, 4500, '16-02-20'),
+    -> (002, 3500, '16-06-11');
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Title (
+    -> WORKER_REF_ID INT,
+    -> WORKER_TITLE VARCHAR(25),
+    -> AFFECTED_FROM DATETIME,
+    -> FOREIGN KEY (WORKER_REF_ID)
+    -> REFERENCES Worker(WORKER_ID)
+    -> ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected (0.22 sec)
+
+mysql> INSERT INTO Title VALUES
+    -> (001, 'Manager', '2016-02-20 00:00:00'),
+    -> (002, 'Executive', '2016-06-11 00:00:00'),
+    -> (008, 'Executive', '2016-06-11 00:00:00'),
+    -> (005, 'Manager', '2016-06-11 00:00:00'),
+    -> (004, 'Asst. Manager', '2016-06-11 00:00:00'),
+    -> (007, 'Executive', '2016-06-11 00:00:00'),
+    -> (006, 'Lead', '2016-06-11 00:00:00'),
+    -> (003, 'Lead', '2016-06-11 00:00:00');
+Query OK, 8 rows affected (0.10 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql>
+
+
+1. Write an SQL query to show the second highest salary from a Worker table.
+
+mysql> select max(salary) from worker where salary < (select max(salary) from worker);
++-------------+
+| max(salary) |
++-------------+
+|      300000 |
++-------------+
+1 row in set (0.02 sec)
+
+                OR
+
+mysql> select * from worker where salary = (select max(salary) from worker where salary < (select max(salary) from worker));
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
++-----------+------------+-----------+--------+---------------------+------------+
+
+
+2. Write an SQL query to determine the 5 highest salary from a Worker table.
+mysql> select distinct salary from worker order by salary desc limit 5;
++--------+
+| salary |
++--------+
+| 500000 |
+| 300000 |
+| 200000 |
+| 100000 |
+|  90000 |
++--------+
+
+
+
+
+3. Write an SQL query to show only even rows from a Worker table.
+mysql> select * from worker where  mod(worker_id,2)=0;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         2 | Niharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+
+
+
+4. Write an SQL query to fetch the no. of workers for each department in descending order
+from the Worker table.
+
+mysql> select department, count(department) as Number_of_Workers   from worker group by department order by Number_of_Workers desc;
++------------+-------------------+
+| department | Number_of_Workers |
++------------+-------------------+
+| Admin      |                 4 |
+| HR         |                 2 |
+| Account    |                 2 |
++------------+-------------------+
+
+
+5. Write an SQL query to fetch the list of employees with the same salary from the Worker
+table.
+
+mysql>  select salary, group_concat(first_name order by salary) as Worker_Names from worker group by salary having count(*) >1;
++--------+---------------+
+| salary | Worker_Names  |
++--------+---------------+
+| 500000 | Vivek,Amitabh |
++--------+---------------+
