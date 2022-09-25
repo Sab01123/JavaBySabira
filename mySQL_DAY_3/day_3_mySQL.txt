@@ -1,6 +1,102 @@
+1. Create the table PROGRAMMER with the given information using SQL CREATE TABLE commands:
+Attribute Description/Data type/Constraint
+EmpNo Employee’s Unique ID. Max 5 characters should be
+numeric
+ProjId Project in which programmer participates. Max 3
+characters should be numeric
+LastName Surname of employee. Max 30 characters Required.
+FirstName Employee’s first name. Max 30 characters
+HireDate Date on which employee was hired. Date data type
+Language Programming Language used by programmer. Max 15
+characters
+TaskNo Number of the rask associated with the project.
+Numeric column, max 2 digits
+Privilege Type of privilege given to programmer. Max 25
+characters
+2. Insert the following data into the PROGRAMMER table
+EmpNo LastName FirstName Hiredate ProjId Language TaskNo Privilege
+201 Gupta Saurav 1/1/95 NPR VB 52 Secret
+390 Ghosh Pinky 1/5/93 KCW JAVA 11 TopSecret
+789 Agarwal Praveen 8/3/98 RNC VB 11 Secret
+134 Chaudhury Supriyo 7/15/95 TIPPS C++ 52 Secret
+896 Jha Ranjit 6/15/97 KCW JAVA 10 TopSecret
+345 John Peter 11/15/99 TIPPS JAVA 52
+563 Anderson Andy 08/15/94 NITTS C++ 89 Confidential
+
+3. Write SQL queries to:
+a. Saurav Gupta is assigned a different project with id NITTS and he would work with C++ now. Update
+this change in the PROGRAMMER table.
+b. Supriyo Chaudhury has resigned his job. Incorporate this in the table PROGRAMMER.
+c. The column TaskNo in the PROGRAMMER table is no longer needed. Delete the column.
+4. Create table Department
+Attribute
+Name
+Description/Data type/Constraint
+DeptNo Department number is Unique ID.
+Dname Department name of a particular department, Dname should not be null.
+Loc Location of the department, loc should not be null.
+5. In DEPARTMENT table, increase the field width of DNAME from 20 to 50
+6. Insert the following data into the Department table
+DEPTNO DNAME LOC
+10 ACCOUNTS NEWYORK
+20 MARKETING CHICAGO
+30 SALES ATLANTA
+40 RESEARCH OHIO
+7. Create table Employee
+Attribute
+Name
+Description/Data type/Constraint
+EmpNo Employee number is Primary Key.
+Ename Name of the employee, Cannot be null
+Job Cannot be null, The job of the employee can be
+MANAGER, CLERK, PRESIDENT
+Sal Cannot be null
+Hiredate Cannot be null
+Deptno Should reference Department Table, Deptno
+8. In EMPLOYEE table add a new attribute MGR(Manager ID) consisting 4 Characters.
+9. Insert the following DATA into the Employee Table
+EMPNO ENAME JOB SAL HIREDATE DEPTNO
+7001 JAMES CLERK 3000 6/5/2005 10
+7002 MASON PRESIDENT 10000 6/6/2005 20
+7003 CLARK MANAGER 5000 6/5/2004 20
+7004 JOHN MANAGER 6000 6/8/2005 10
+7005 BLAKE CLERK 3500 6/9/2005 30
+10. Create table Grade
+Attribute
+Name
+Description/Data
+type/Constraint
+GradeNo Grade number is
+Primary Key.
+Hi_sal Cannot be null
+Lo_sal Cannot be null
+11.Drop the column Lo_sal from Grade Table
+12.Add column Low_sal in Grade table
+13.Insert the following data into the table
+GRADE_NO HI_SAL LO_SAL
+1 2000 500
+2 3500 2100
+3 6000 3600
+4 15000 6100
+14.Create table EMPLOYEE_BACK from employee table
+15.Increase the salary of JAMES from 3000 to 3500
+16.Increase the salary of all MANAGER by 1000
+17.Decrease the salary of DEPTNO 10 by 100
+18.Add a new field COMM in EMPLOYEE table
+19.Initialize the value of COMM to zero in EMPLOYEE table.
+20.Remove the employees who have joined before 6-Jun-2005
+
+
+
+
+
+21.Remove employees whose salary is less than 3000
 
 mysql> delete from back_employee where sal< 3000;
 Query OK, 0 rows affected (0.00 sec)
+
+
+22.List all employees who are working in department 10.
 
 mysql> select * from back_employee where deptno=10;
 +-------+-------+---------+---------+------------+--------+------+------+
@@ -10,6 +106,9 @@ mysql> select * from back_employee where deptno=10;
 +-------+-------+---------+---------+------------+--------+------+------+
 1 row in set (0.00 sec)
 
+
+23.List all employees of department 10 and are MANAGER
+
 mysql> select * from back_employee where deptno=10 AND job='manager';
 +-------+-------+---------+---------+------------+--------+------+------+
 | empno | Ename | job     | sal     | hiredate   | deptno | mgr  | comm |
@@ -18,6 +117,9 @@ mysql> select * from back_employee where deptno=10 AND job='manager';
 +-------+-------+---------+---------+------------+--------+------+------+
 1 row in set (0.00 sec)
 
+
+
+24.List all employees whose salary is between 3000 and 5000
 mysql> select * from back_employee where sal between 3000 AND 5000;
 +-------+-------+-------+------+------------+--------+------+------+
 | empno | Ename | job   | sal  | hiredate   | deptno | mgr  | comm |
@@ -26,11 +128,16 @@ mysql> select * from back_employee where sal between 3000 AND 5000;
 +-------+-------+-------+------+------------+--------+------+------+
 1 row in set (0.00 sec)
 
+25. List//delete ho gaya galati se// all employees who have joined after 10
+th
+July 2005
 mysql> delete from back_employee where hiredate> '2005-07-10';
 Query OK, 2 rows affected (0.12 sec)
 
 mysql> restore from back_employee where hiredate>'2005-07-10';
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'restore from back_employee where hiredate>'2005-07-10'' at line 1
+
+26.List all employees who are MANAGER or PRESIDENT
 mysql> select * from back_employee where job='manager' or job='president';
 +-------+-------+-----------+-------+------------+--------+------+------+
 | empno | Ename | job       | sal   | hiredate   | deptno | mgr  | comm |
