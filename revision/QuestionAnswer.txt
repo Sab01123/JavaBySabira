@@ -1,0 +1,40 @@
+1.	WHAT IS THE NEED FOR THREADS IN JAVA?
+Ans:-Threads allow a program to operate more efficiently by doing multiple things at the same time.Threads can be used to perform complicated tasks in the background without interrupting the main program.
+2.	HOW DO YOU CREATE A THREAD?
+Ans:- There are two methods in java to create a Threads 
+1.	  To extend the Thread class 
+2.	To Implement a Runnable Interface.
+
+3.	HOW DO YOU CREATE A THREAD BY EXTENDING THREAD CLASS? 
+Ans :- 
+
+Just Extend the class and override a run() Method.
+For example: 
+
+Class A extend Thread{
+
+@Override
+public void run(){
+// code.
+}
+}
+
+
+
+4.	 HOW DO YOU CREATE A THREAD BY IMPLEMENTING RUNNABLE INTERFACE?
+Just Implement the Interface of Runnable and override a run() method.
+Example:-
+Class A Implements Runnable{
+@Override
+Public void run(){
+//code
+}
+}
+5.	HOW DO YOU RUN A THREAD IN JAVA?
+Ans:-Create a Object of Java and claa the run method.
+Ex:- Class Main{
+Static Public void main(String [] args){
+ThreadAth=new ThreadA();
+
+Th.run();  // Calling the run method which is inside the ThreadA object which extends a Thread classs of class 
+
